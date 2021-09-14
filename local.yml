@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3.8'
 
 services:
 
@@ -23,8 +23,10 @@ services:
     build:
       context: .
       dockerfile: .dockers/local/fastapi/Dockerfile
-    command: uvicorn app.main:app --reload
+    command: uvicorn app.main:app --reload --host 0.0.0.0
     volumes:
       - .:/app/
     depends_on:
       - mongo
+    ports:
+      - 8000:8000
